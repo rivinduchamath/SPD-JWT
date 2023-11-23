@@ -1,0 +1,49 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/jwt_security
+    username: postgres
+    password: 1234
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+application:
+  security:
+    jwt:
+      secret-key: 404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970
+      expiration: 86400000 # a day
+      refresh-token:
+        expiration: 604800000 # 7 days
+
+initial:
+  admin:
+    email: admin@mail.com
+    first-name: Super
+    last-name: Admin
+    password: 1234
+  role:
+    name:
+      admin: ADMIN
+      user: USER
+    permission:
+      read: read
+      write: write
+      update: update
+      delete: delete
+
+server:
+  port: 8082
+  servlet:
+    context-path: /api/oauth
+    role-register: /v1/register
+    user-register: /v1/register
+    admin-register: /v1/register
+    user-login: /v1/user
+    refresh-login: /v1/refresh-token
